@@ -24,11 +24,11 @@ function ListBooks({ books }) {
                                                     }}
                                                 ></div>
                                                 <div className="book-shelf-changer">
-                                                    <select>
+                                                    <select value={book.shelf}>
                                                         <option value="none" disabled>
                                                             Move to...
                                                         </option>
-                                                        <option value={book.shelf}>
+                                                        <option value="currentlyReading">
                                                             Currently Reading
                                                         </option>
                                                         <option value="wantToRead">Want to Read</option>
@@ -64,11 +64,11 @@ function ListBooks({ books }) {
                                                     }}
                                                 ></div>
                                                 <div className="book-shelf-changer">
-                                                    <select>
+                                                    <select value={book.shelf}>
                                                         <option value="none" disabled>
                                                             Move to...
                                                         </option>
-                                                        <option value={book.shelf}>
+                                                        <option value="currentlyReading">
                                                             Currently Reading
                                                         </option>
                                                         <option value="wantToRead">Want to Read</option>
@@ -104,11 +104,11 @@ function ListBooks({ books }) {
                                                     }}
                                                 ></div>
                                                 <div className="book-shelf-changer">
-                                                    <select>
+                                                    <select value={book.shelf}>
                                                         <option value="none" disabled>
                                                             Move to...
                                                         </option>
-                                                        <option value={book.shelf}>
+                                                        <option value="currentlyReading">
                                                             Currently Reading
                                                         </option>
                                                         <option value="wantToRead">Want to Read</option>
