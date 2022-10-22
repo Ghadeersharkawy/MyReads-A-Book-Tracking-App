@@ -18,10 +18,11 @@ function App() {
     };
 
     getBooks();
+
   }, []);
 
   const handleShelfChange = (book, tshelf) => {
-    console.log(book, tshelf);
+    // console.log(book, tshelf);
     setShelf(shelf => book.shelf = tshelf);
     BooksAPI.update(book, tshelf);
     //console.log(shelf);
@@ -30,7 +31,7 @@ function App() {
   return (
     <div className="app">
       {showSearchPage ? (
-        <Search showSearchPage={showSearchPage} setShowSearchpage={setShowSearchpage} />
+        <Search showSearchPage={showSearchPage} setShowSearchpage={setShowSearchpage} books={books} handleShelfChange={handleShelfChange} />
       ) : (
         <React.Fragment>
           <ListBooks books={books} shelf={shelf} handleShelfChange={handleShelfChange} />
