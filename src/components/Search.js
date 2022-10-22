@@ -14,16 +14,26 @@ function Search({ showSearchPage, setShowSearchpage, books, handleShelfChange })
 
     useEffect(() => {
         console.log('queryupdated');
-        if (query.length > 1)
+        if (query.length > 0)
         {
             const searchBooks = async () => {
                 const searchRes = await BooksAPI.search(query);
                 // console.log(searchRes);
-                setSearchResults(searchRes);
+                if (searchRes.error)
+                {
+                    setSearchResults([]);
+                } else
+                {
+                    setSearchResults(searchRes);
+                }
+
                 console.log(searchResults);
             };
 
             searchBooks();
+        } else
+        {
+            setSearchResults([]);
         }
 
     }, [query]);
@@ -48,7 +58,7 @@ function Search({ showSearchPage, setShowSearchpage, books, handleShelfChange })
             </div>
             <div className="search-books-results">
                 <ol className="books-grid">
-                    {searchResults.map((s) => {
+                    {searchResults.length === 0 ? [] : searchResults.map((s) => {
                         return (<li key={s.id}>
                             <div className="book">
                                 <div className="book-top">
@@ -62,8 +72,9 @@ function Search({ showSearchPage, setShowSearchpage, books, handleShelfChange })
                                         }}
                                     ></div>
                                     <div className="book-shelf-changer">
-                                        <select value={s.shelf} onChange={(e) => handleShelfChange(s, e.target.value)}>
-                                            <option value="none" disabled>
+                                        {console.log(s.shelf)}
+                                        <select value={s.shelf === undefined ? 'none' : s.shelf} onChange={(ev) => handleShelfChange(s, ev.target.value)}>
+                                            <option disabled>
                                                 Move to...
                                             </option>
                                             <option value="currentlyReading">
