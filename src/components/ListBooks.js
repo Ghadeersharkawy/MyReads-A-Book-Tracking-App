@@ -1,4 +1,7 @@
-function ListBooks({ books }) {
+
+
+function ListBooks({ books, handleShelfChange, shelf }) {
+
     return (
         <div className="list-books">
             <div className="list-books-title">
@@ -24,7 +27,7 @@ function ListBooks({ books }) {
                                                     }}
                                                 ></div>
                                                 <div className="book-shelf-changer">
-                                                    <select value={book.shelf}>
+                                                    <select value={book.shelf} onChange={(e) => handleShelfChange(book, e.target.value)}>
                                                         <option value="none" disabled>
                                                             Move to...
                                                         </option>
@@ -64,7 +67,7 @@ function ListBooks({ books }) {
                                                     }}
                                                 ></div>
                                                 <div className="book-shelf-changer">
-                                                    <select value={book.shelf}>
+                                                    <select value={book.shelf} onChange={(e) => handleShelfChange(book, e.target.value)}>
                                                         <option value="none" disabled>
                                                             Move to...
                                                         </option>
@@ -104,7 +107,7 @@ function ListBooks({ books }) {
                                                     }}
                                                 ></div>
                                                 <div className="book-shelf-changer">
-                                                    <select value={book.shelf}>
+                                                    <select value={book.shelf} onChange={(e) => handleShelfChange(book, e.target.value)}>
                                                         <option value="none" disabled>
                                                             Move to...
                                                         </option>

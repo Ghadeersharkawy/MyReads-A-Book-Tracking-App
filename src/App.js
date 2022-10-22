@@ -7,6 +7,9 @@ import Search from "./components/Search";
 function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
   const [books, setBooks] = useState([]);
+  const [shelf, setShelf] = useState('none');
+
+
 
   useEffect(() => {
     const getBooks = async () => {
@@ -17,13 +20,20 @@ function App() {
     getBooks();
   }, []);
 
+  const handleShelfChange = (book, tshelf) => {
+    console.log(book, tshelf);
+    setShelf(shelf => book.shelf = tshelf);
+    BooksAPI.update(book, tshelf);
+    //console.log(shelf);
+  }
+
   return (
     <div className="app">
       {showSearchPage ? (
         <Search showSearchPage={showSearchPage} setShowSearchpage={setShowSearchpage} />
       ) : (
         <React.Fragment>
-          <ListBooks books={books} />
+          <ListBooks books={books} shelf={shelf} handleShelfChange={handleShelfChange} />
           <div className="open-search">
             <a onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</a>
           </div>
