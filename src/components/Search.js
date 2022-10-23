@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import * as BooksAPI from '../BooksAPI';
+import { Link } from 'react-router-dom';
 
 function Search({ showSearchPage, setShowSearchpage, books, handleShelfChange }) {
 
@@ -41,12 +42,12 @@ function Search({ showSearchPage, setShowSearchpage, books, handleShelfChange })
     return (
         <div className="search-books">
             <div className="search-books-bar">
-                <a
-                    className="close-search"
-                    onClick={() => setShowSearchpage(!showSearchPage)}
+                <Link
+                    className="close-search" to="/"
+                // onClick={() => setShowSearchpage(!showSearchPage)}
                 >
                     Close
-                </a>
+                </Link>
                 <div className="search-books-input-wrapper">
                     <input
                         type="text"

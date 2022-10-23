@@ -3,6 +3,7 @@ import * as BooksAPI from './BooksAPI';
 import React, { useState, useEffect } from "react";
 import ListBooks from "./components/ListBooks";
 import Search from "./components/Search";
+import { Link, Routes, Route } from 'react-router-dom'
 
 function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
@@ -30,16 +31,13 @@ function App() {
 
   return (
     <div className="app">
-      {showSearchPage ? (
-        <Search showSearchPage={showSearchPage} shelf={shelf} setShowSearchpage={setShowSearchpage} books={books} handleShelfChange={handleShelfChange} />
-      ) : (
-        <React.Fragment>
-          <ListBooks books={books} shelf={shelf} handleShelfChange={handleShelfChange} />
-          <div className="open-search">
-            <a onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</a>
-          </div>
-        </React.Fragment>
-      )}
+      <Routes>
+        <Route path="/search" element={<Search showSearchPage={showSearchPage} shelf={shelf} setShowSearchpage={setShowSearchpage} books={books} handleShelfChange={handleShelfChange} />}></Route>
+
+        <Route path="/" element={<ListBooks books={books} shelf={shelf} handleShelfChange={handleShelfChange} />}></Route>
+
+      </Routes>
+
     </div>
   );
 }
