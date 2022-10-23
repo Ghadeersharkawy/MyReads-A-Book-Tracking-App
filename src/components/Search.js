@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import * as BooksAPI from '../BooksAPI';
 import { Link } from 'react-router-dom';
 
-function Search({ showSearchPage, setShowSearchpage, books, handleShelfChange }) {
+function Search({ books, handleShelfChange }) {
 
     const [query, setQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
@@ -14,7 +14,7 @@ function Search({ showSearchPage, setShowSearchpage, books, handleShelfChange })
     }
 
     useEffect(() => {
-        console.log('queryupdated');
+        // console.log('queryupdated');
         if (query.length > 0)
         {
             const searchBooks = async () => {
@@ -63,15 +63,18 @@ function Search({ showSearchPage, setShowSearchpage, books, handleShelfChange })
                         return (<li key={s.id}>
                             <div className="book">
                                 <div className="book-top">
-                                    <div
-                                        className="book-cover"
-                                        style={{
-                                            width: 128,
-                                            height: 193,
-                                            backgroundImage:
-                                                `url(${s.imageLinks.thumbnail})`,
-                                        }}
-                                    ></div>
+                                    {s.imageLinks && (
+                                        <div
+                                            className="book-cover"
+                                            style={{
+                                                width: 128,
+                                                height: 193,
+                                                backgroundImage:
+                                                    `url(${s.imageLinks.thumbnail})`,
+                                            }}
+                                        ></div>
+                                    )}
+
                                     <div className="book-shelf-changer">
                                         {console.log(s.shelf)}
                                         <select value={s.shelf === undefined ? 'none' : s.shelf} onChange={(ev) => handleShelfChange(s, ev.target.value)}>
