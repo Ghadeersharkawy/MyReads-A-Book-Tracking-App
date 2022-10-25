@@ -8,23 +8,22 @@ function Search({ books, handleShelfChange }) {
 
     const [query, setQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
-    // console.log(books);
 
     const foundBooks = [];
 
     const handelSearchQuery = (query) => {
-        // console.log(query);
+
         setQuery(query);
 
     }
 
     useEffect(() => {
-        // console.log('queryupdated');
+
         if (query.length > 0)
         {
             const searchBooks = async () => {
                 const searchRes = await BooksAPI.search(query);
-                // console.log(searchRes);
+
                 if (searchRes.error)
                 {
                     setSearchResults([]);
@@ -33,7 +32,7 @@ function Search({ books, handleShelfChange }) {
                     setSearchResults(searchRes);
                 }
 
-                // console.log(searchResults);
+
             };
 
             searchBooks();
@@ -66,7 +65,7 @@ function Search({ books, handleShelfChange }) {
             <div className="search-books-bar">
                 <Link
                     className="close-search" to="/"
-                // onClick={() => setShowSearchpage(!showSearchPage)}
+
                 >
                     Close
                 </Link>

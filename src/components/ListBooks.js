@@ -11,20 +11,16 @@ function ListBooks({ books, handleShelfChange, shelf }) {
             </div>
             <div className="list-books-content">
                 <div>
-                    <div className="bookshelf">
-                        <h2 className="bookshelf-title">Currently Reading</h2>
 
-                        <Book books={books.filter(b => b.shelf === 'currentlyReading')} shelfChange={handleShelfChange} />
 
-                    </div>
-                    <div className="bookshelf">
-                        <h2 className="bookshelf-title">Want to Read</h2>
-                        <Book books={books.filter(b => b.shelf === 'wantToRead')} shelfChange={handleShelfChange} />
-                    </div>
-                    <div className="bookshelf">
-                        <h2 className="bookshelf-title">Read</h2>
-                        <Book books={books.filter(b => b.shelf === 'read')} shelfChange={handleShelfChange} />
-                    </div>
+                    <Book books={books.filter(b => b.shelf === 'currentlyReading')} title='Currently Reading' shelfChange={handleShelfChange} />
+
+
+                    <Book books={books.filter(b => b.shelf === 'wantToRead')} title='Want to Read' shelfChange={handleShelfChange} />
+
+
+                    <Book books={books.filter(b => b.shelf === 'read')} title='Read' shelfChange={handleShelfChange} />
+
                 </div>
             </div>
             <div className="open-search">

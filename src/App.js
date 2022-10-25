@@ -23,13 +23,10 @@ function App() {
   }, []);
 
   const handleShelfChange = (book, tshelf) => {
-    // console.log(book, tshelf);
     setShelf(book.shelf = tshelf);
     BooksAPI.update(book, tshelf);
-    // console.log(book.id);
     const newBook = books.filter(b => b.id === book.id)
     setBooks([...books, newBook]);
-    //console.log(books);
   }
 
 
