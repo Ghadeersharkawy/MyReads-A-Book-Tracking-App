@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function Book({ books, shelfChange }) {
     return (
         <div className="bookshelf-books">
@@ -39,4 +41,9 @@ function Book({ books, shelfChange }) {
         </div>
     );
 }
+
+Book.propTypes = {
+    books: PropTypes.array.isRequired,
+    shelfChange: PropTypes.func.isRequired,
+};
 export default Book;

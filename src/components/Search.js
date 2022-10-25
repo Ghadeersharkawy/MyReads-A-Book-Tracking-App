@@ -1,14 +1,19 @@
 import { useState, useEffect } from 'react';
 import * as BooksAPI from '../BooksAPI';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 
 function Search({ books, handleShelfChange }) {
 
     const [query, setQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     // console.log(books);
+
+    const foundBooks = [];
+
     const handelSearchQuery = (query) => {
-        console.log(query);
+        // console.log(query);
         setQuery(query);
 
     }
@@ -28,7 +33,7 @@ function Search({ books, handleShelfChange }) {
                     setSearchResults(searchRes);
                 }
 
-                console.log(searchResults);
+                // console.log(searchResults);
             };
 
             searchBooks();
@@ -38,6 +43,23 @@ function Search({ books, handleShelfChange }) {
         }
 
     }, [query]);
+
+
+
+    searchResults.map(result => {
+        const matchingResults = books.filter(book => book.id === result.id);
+
+        if (matchingResults.length > 0)
+        {
+
+            return foundBooks.push(...matchingResults);
+
+        } else
+        {
+            return foundBooks.push(result);
+
+        }
+    });
 
     return (
         <div className="search-books">
@@ -59,7 +81,7 @@ function Search({ books, handleShelfChange }) {
             </div>
             <div className="search-books-results">
                 <ol className="books-grid">
-                    {searchResults.length === 0 ? [] : searchResults.map((s) => {
+                    {foundBooks.map((s) => {
                         return (<li key={s.id}>
                             <div className="book">
                                 <div className="book-top">
@@ -76,8 +98,8 @@ function Search({ books, handleShelfChange }) {
                                     )}
 
                                     <div className="book-shelf-changer">
-                                        {console.log(s.shelf)}
-                                        <select value={s.shelf === undefined ? 'none' : s.shelf} onChange={(ev) => handleShelfChange(s, ev.target.value)}>
+
+                                        <select value={s.shelf ? s.shelf : 'none'} onChange={(ev) => handleShelfChange(s, ev.target.value)}>
                                             <option disabled>
                                                 Move to...
                                             </option>
@@ -101,4 +123,9 @@ function Search({ books, handleShelfChange }) {
         </div>
     );
 }
+Search.propTypes = {
+    books: PropTypes.array.isRequired,
+    handleShelfChange: PropTypes.func.isRequired,
+};
+
 export default Search

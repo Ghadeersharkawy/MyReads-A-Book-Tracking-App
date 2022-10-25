@@ -20,7 +20,7 @@ function App() {
 
     getBooks();
 
-  }, [books]);
+  }, []);
 
   const handleShelfChange = (book, tshelf) => {
     // console.log(book, tshelf);
